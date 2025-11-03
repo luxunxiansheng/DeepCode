@@ -22,7 +22,7 @@ mcp:
       - tools/bocha_search_server.py
       command: python3
       env:
-        BOCHA_API_KEY: 'sk-eb68d18f2c4845a390ea815d14c710aa'
+        BOCHA_API_KEY: 'sk-1d1836d8a493470ab1c0f9cf1e9d94e7'
         PYTHONPATH: .
     brave:
       args:
@@ -85,7 +85,7 @@ mcp:
         PYTHONPATH: .
 openai:
   base_max_tokens: 20000
-  default_model: google/gemini-2.5-pro
+  default_model: gpt-4o-mini
   max_tokens_policy: adaptive
   retry_max_tokens: 32768
 planning_mode: traditional
