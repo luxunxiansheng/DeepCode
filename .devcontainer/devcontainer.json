@@ -3,6 +3,16 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
+  "runArgs": [
+		"--gpus=all",
+		"--shm-size=10g",
+		"--network=host"
+	],
+  "containerEnv": {
+	   "http_proxy": "${localEnv:http_proxy}",
+      "https_proxy": "${localEnv:https_proxy}",
+      "no_proxy": "${localEnv:no_proxy}",
+ 	},
   "postCreateCommand": "python -m pip install -r requirements.txt && sudo npm install -g @modelcontextprotocol/server-brave-search @modelcontextprotocol/server-filesystem",
   "remoteUser": "vscode",
   "forwardPorts": [8501],
@@ -11,6 +21,20 @@
       "extensions": [
         "ms-python.python",
         "ms-vscode-remote.remote-containers",
+				"ms-python.vscode-pylance",
+				"ms-python.debugpy",
+				"ms-python.black-formatter",
+				"ms-python.vscode-python-envs",
+				"ms-toolsai.jupyter",
+				"ms-toolsai.datawrangler",
+				"shd101wyy.markdown-preview-enhanced",
+				"yzhang.markdown-all-in-one",
+				"bierner.markdown-checkbox",
+				"bierner.markdown-mermaid",
+				"DavidAnson.vscode-markdownlint",
+				"marp-team.marp-vscode",
+				"mhutchie.git-graph",
+				"RSIP-Vision.nvidia-smi-plus"
       ],
       "settings": {
         "python.defaultInterpreterPath": "/usr/local/bin/python",
