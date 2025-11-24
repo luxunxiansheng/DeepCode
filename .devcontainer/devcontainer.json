@@ -1,21 +1,43 @@
 {
   "name": "DeepCode Dev Environment",
   "build": {
-    "dockerfile": "Dockerfile"
+    "dockerfile": "Dockerfile",
+    "args": {
+      "USER_UID": "1000",
+      "USER_GID": "1000"
+    }
   },
   "runArgs": [
 		"--gpus=all",
 		"--shm-size=10g",
 		"--network=host"
 	],
+  "updateRemoteUserUID": true,
+  "mounts": [
+    {
+      "source": "/home/li/.cache/huggingface",
+      "target": "/home/vscode/huggingface",
+      "type": "bind"
+    },
+    {
+      "source": "/home/li/OrNot/vllm",
+      "target": "/workspaces/DeepCode/vllm",
+      "type": "bind"
+    },
+    {
+      "source": "${localEnv:HOME}/.cache/uv",
+      "target": "/home/vscode/.cache/uv",
+      "type": "bind"
+    }
+  ],
   "containerEnv": {
 	   "http_proxy": "${localEnv:http_proxy}",
       "https_proxy": "${localEnv:https_proxy}",
       "no_proxy": "${localEnv:no_proxy}",
+      "HF_HOME": "/home/vscode/huggingface"
  	},
-  "postCreateCommand": "python -m pip install -r requirements.txt && sudo npm install -g @modelcontextprotocol/server-brave-search @modelcontextprotocol/server-filesystem",
   "remoteUser": "vscode",
-  "forwardPorts": [8501],
+  "postCreateCommand": "bash -c \"curl -LsSf https://astral.sh/uv/install.sh | sh && echo 'export PATH=\\\"$HOME/.local/bin:$PATH\\\"' >> ~/.bashrc && export PATH=\\\"$HOME/.local/bin:$PATH\\\" && uv venv --clear && source .venv/bin/activate && uv pip install -e . && uv pip install vllm\"",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -37,7 +59,7 @@
 				"RSIP-Vision.nvidia-smi-plus"
       ],
       "settings": {
-        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.defaultInterpreterPath": "./.venv/bin/python",
         "terminal.integrated.defaultProfile.linux": "bash"
       }
     }

@@ -48,6 +48,10 @@ neo4jWorkDir/
 # Data & Storage
 inputs/
 rag_storage/
+
+# Mounted directories (not tracked by git)
+.cache/huggingface/
+vllm/
 examples/input/
 examples/output/
 deepcode-mcp/agent_folders
@@ -67,3 +71,4 @@ memory-bank/
 mcp_agent.secrets.yaml
 mcp_agent.config.yaml
 logs/
+deepcode_lab/

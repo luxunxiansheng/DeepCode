@@ -51,6 +51,11 @@ RUN chown -R ${USERNAME}:${USERNAME} /workspace || true
 
 USER ${USERNAME}
 ENV PATH=/home/${USERNAME}/.local/bin:$PATH
+
+# Create .cache/uv directory with proper permissions
+RUN mkdir -p /home/${USERNAME}/.cache/uv && \
+    chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}/.cache
+
 CMD ["/bin/bash"]
 
 # Final workdir for developer

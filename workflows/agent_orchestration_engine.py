@@ -1300,7 +1300,7 @@ async def run_chat_planning_agent(user_input: str, logger) -> str:
 
             # Set higher token output for comprehensive planning
             planning_params = RequestParams(
-                maxTokens=8192,  # 使用 camelCase - Higher token limit for detailed plans
+                maxTokens=4096,  # 使用 camelCase - Higher token limit for detailed plans
                 temperature=0.2,  # Lower temperature for more structured output
             )
 

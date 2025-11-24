@@ -3,7 +3,7 @@ anthropic: null
 default_search_server: bocha-mcp
 document_segmentation:
   enabled: true
-  size_threshold_chars: 3000
+  size_threshold_chars: 50000
 execution_engine: asyncio
 logger:
   level: info
@@ -22,7 +22,7 @@ mcp:
       - tools/bocha_search_server.py
       command: python3
       env:
-        BOCHA_API_KEY: 'sk-1d1836d8a493470ab1c0f9cf1e9d94e7'
+        BOCHA_API_KEY: sk-1d1836d8a493470ab1c0f9cf1e9d94e7
         PYTHONPATH: .
     brave:
       args:
@@ -85,7 +85,7 @@ mcp:
         PYTHONPATH: .
 openai:
   base_max_tokens: 20000
-  default_model: gpt-4o-mini
+  default_model: Qwen/Qwen2.5-7B-Instruct
   max_tokens_policy: adaptive
   retry_max_tokens: 32768
 planning_mode: traditional
